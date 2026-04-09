@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { searchGames } from './services/apiService'
 import { saveWishlist, loadWishlist, saveBacklog, loadBacklog, updateGameStatus } from './services/storageService'
 import GameCard from './components/GameCard'
+import Statistics from './components/Statistics'
+import RandomPicker from './components/RandomPicker'
 import { useTheme } from './context/ThemeContext'
 
 function App() {
@@ -82,7 +84,6 @@ function App() {
     }
   }
 
-  // Estilos según modo oscuro
   const styles = {
     container: {
       padding: '20px',
@@ -146,7 +147,7 @@ function App() {
         </button>
       </div>
       
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', borderBottom: `1px solid ${darkMode ? '#444' : '#ccc'}` }}>
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', borderBottom: `1px solid ${darkMode ? '#444' : '#ccc'}`, flexWrap: 'wrap' }}>
         <button onClick={() => setActiveTab('search')} style={styles.tabButton(activeTab === 'search')}>
           🔍 Buscar
         </button>
@@ -155,6 +156,12 @@ function App() {
         </button>
         <button onClick={() => setActiveTab('backlog')} style={styles.tabButton(activeTab === 'backlog')}>
           📋 Backlog ({backlog.length})
+        </button>
+        <button onClick={() => setActiveTab('stats')} style={styles.tabButton(activeTab === 'stats')}>
+          📊 Estadísticas
+        </button>
+        <button onClick={() => setActiveTab('random')} style={styles.tabButton(activeTab === 'random')}>
+          🎲 Random
         </button>
       </div>
 
@@ -426,6 +433,14 @@ function App() {
               ))}
           </div>
         </div>
+      )}
+
+      {activeTab === 'stats' && (
+        <Statistics backlog={backlog} wishlist={wishlist} />
+      )}
+
+      {activeTab === 'random' && (
+        <RandomPicker backlog={backlog} />
       )}
     </div>
   )
