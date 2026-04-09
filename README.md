@@ -1,13 +1,13 @@
 # 🎮 GameTrack
 
-[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://TU_USUARIO.github.io/gametrack)
+[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://BastianLazo.github.io/gametrack)
 [![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5-yellow)](https://vitejs.dev/)
 [![License](https://img.shields.io/badge/license-MIT-red)](LICENSE)
 
 > A personal game wishlist and backlog manager with real-time price tracking, statistics dashboard, and dark mode.
 
-**Live Demo:** [https://TU_USUARIO.github.io/gametrack](https://TU_USUARIO.github.io/gametrack)
+**Live Demo:** [https://BastianLazo.github.io/gametrack](https://BastianLazo.github.io/gametrack)
 
 ---
 
@@ -88,7 +88,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/TU_USUARIO/gametrack.git
+git clone https://github.com/BastianLazo/gametrack.git
 
 # Navigate to project
 cd gametrack
