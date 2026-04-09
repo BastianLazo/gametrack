@@ -14,7 +14,6 @@
 ## 📋 Table of Contents
 - [Features](#features)
 - [Technologies](#technologies)
-- [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Reference](#api-reference)
@@ -57,24 +56,6 @@
 
 ### Deployment
 - **GitHub Pages** - Free hosting
-
----
-
-## 📸 Screenshots
-
-| Light Mode | Dark Mode |
-|------------|-----------|
-| *Add screenshot here* | *Add screenshot here* |
-
-| Search | Wishlist | Backlog |
-|--------|----------|---------|
-| *Add screenshot* | *Add screenshot* | *Add screenshot* |
-
-| Statistics | Random Picker |
-|------------|---------------|
-| *Add screenshot* | *Add screenshot* |
-
-> 💡 **Tip:** Take screenshots of your app and replace the placeholders above.
 
 ---
 
