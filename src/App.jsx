@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react'
 import { searchGames } from './services/apiService'
 import { saveWishlist, loadWishlist, saveBacklog, loadBacklog, updateGameStatus } from './services/storageService'
 import GameCard from './components/GameCard'
+import { useTheme } from './context/ThemeContext'
 
 function App() {
+  const { darkMode, toggleDarkMode } = useTheme()
   const [searchTerm, setSearchTerm] = useState('')
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
@@ -13,7 +15,6 @@ function App() {
   const [activeTab, setActiveTab] = useState('search')
   const [filterStatus, setFilterStatus] = useState('todos')
 
-  // Cargar datos al iniciar
   useEffect(() => {
     const loadData = async () => {
       const savedWishlist = await loadWishlist()
@@ -81,18 +82,78 @@ function App() {
     }
   }
 
+  // Estilos según modo oscuro
+  const styles = {
+    container: {
+      padding: '20px',
+      maxWidth: '1200px',
+      margin: '0 auto',
+      minHeight: '100vh',
+      backgroundColor: darkMode ? '#1a1a1a' : '#ffffff',
+      color: darkMode ? '#ffffff' : '#000000'
+    },
+    card: {
+      border: `1px solid ${darkMode ? '#444' : '#e0e0e0'}`,
+      padding: '15px',
+      borderRadius: '12px',
+      width: '260px',
+      backgroundColor: darkMode ? '#2d2d2d' : '#ffffff',
+      boxShadow: darkMode ? '0 4px 6px rgba(0,0,0,0.3)' : '0 4px 6px rgba(0,0,0,0.1)',
+      transition: 'transform 0.2s'
+    },
+    tabButton: (isActive) => ({
+      padding: '10px',
+      background: isActive ? (darkMode ? '#555' : '#ddd') : 'none',
+      color: darkMode ? '#fff' : '#000',
+      cursor: 'pointer',
+      border: 'none',
+      borderRadius: '4px'
+    }),
+    input: {
+      padding: '8px',
+      width: '300px',
+      marginRight: '10px',
+      backgroundColor: darkMode ? '#333' : '#fff',
+      color: darkMode ? '#fff' : '#000',
+      border: `1px solid ${darkMode ? '#555' : '#ccc'}`,
+      borderRadius: '4px'
+    },
+    button: {
+      padding: '8px 16px',
+      cursor: 'pointer',
+      border: 'none',
+      borderRadius: '4px'
+    }
+  }
+
   return (
-    <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
-      <h1>🎮 GameTrack</h1>
+    <div style={styles.container}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h1>🎮 GameTrack</h1>
+        <button 
+          onClick={toggleDarkMode}
+          style={{
+            padding: '10px 20px',
+            cursor: 'pointer',
+            background: darkMode ? '#ff9800' : '#333',
+            color: 'white',
+            border: 'none',
+            borderRadius: '8px',
+            fontSize: '16px'
+          }}
+        >
+          {darkMode ? '☀️ Modo Claro' : '🌙 Modo Oscuro'}
+        </button>
+      </div>
       
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', borderBottom: '1px solid #ccc' }}>
-        <button onClick={() => setActiveTab('search')} style={{ padding: '10px', background: activeTab === 'search' ? '#ddd' : 'none', cursor: 'pointer' }}>
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', borderBottom: `1px solid ${darkMode ? '#444' : '#ccc'}` }}>
+        <button onClick={() => setActiveTab('search')} style={styles.tabButton(activeTab === 'search')}>
           🔍 Buscar
         </button>
-        <button onClick={() => setActiveTab('wishlist')} style={{ padding: '10px', background: activeTab === 'wishlist' ? '#ddd' : 'none', cursor: 'pointer' }}>
+        <button onClick={() => setActiveTab('wishlist')} style={styles.tabButton(activeTab === 'wishlist')}>
           💖 Wishlist ({wishlist.length})
         </button>
-        <button onClick={() => setActiveTab('backlog')} style={{ padding: '10px', background: activeTab === 'backlog' ? '#ddd' : 'none', cursor: 'pointer' }}>
+        <button onClick={() => setActiveTab('backlog')} style={styles.tabButton(activeTab === 'backlog')}>
           📋 Backlog ({backlog.length})
         </button>
       </div>
@@ -106,9 +167,9 @@ function App() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-              style={{ padding: '8px', width: '300px', marginRight: '10px' }}
+              style={styles.input}
             />
-            <button onClick={handleSearch}>Buscar</button>
+            <button onClick={handleSearch} style={styles.button}>Buscar</button>
           </div>
           {loading && <p>Cargando...</p>}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginTop: '20px' }}>
@@ -128,21 +189,13 @@ function App() {
         <div>
           <h2>💖 Tu Wishlist</h2>
           {wishlist.length === 0 && (
-            <p style={{ color: '#666', textAlign: 'center', marginTop: '40px' }}>
+            <p style={{ color: darkMode ? '#aaa' : '#666', textAlign: 'center', marginTop: '40px' }}>
               No hay juegos en tu wishlist. Busca y añade algunos.
             </p>
           )}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginTop: '20px' }}>
             {wishlist.map(game => (
-              <div key={game.id} style={{ 
-                border: '1px solid #e0e0e0', 
-                padding: '15px', 
-                borderRadius: '12px',
-                width: '260px',
-                backgroundColor: '#ffffff',
-                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                transition: 'transform 0.2s'
-              }}
+              <div key={game.id} style={styles.card}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
               onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
                 <h3 style={{ 
@@ -194,7 +247,7 @@ function App() {
         <div>
           <h2>📋 Tu Backlog</h2>
           {backlog.length === 0 && (
-            <p style={{ color: '#666', textAlign: 'center', marginTop: '40px' }}>
+            <p style={{ color: darkMode ? '#aaa' : '#666', textAlign: 'center', marginTop: '40px' }}>
               No hay juegos en tu backlog. Añade los que quieres jugar.
             </p>
           )}
@@ -207,8 +260,8 @@ function App() {
                 style={{ 
                   padding: '5px 12px', 
                   cursor: 'pointer',
-                  background: filterStatus === 'todos' ? '#333' : '#e0e0e0',
-                  color: filterStatus === 'todos' ? 'white' : '#333',
+                  background: filterStatus === 'todos' ? (darkMode ? '#555' : '#333') : (darkMode ? '#444' : '#e0e0e0'),
+                  color: filterStatus === 'todos' ? 'white' : (darkMode ? '#fff' : '#333'),
                   border: 'none',
                   borderRadius: '4px'
                 }}>
@@ -219,8 +272,8 @@ function App() {
                 style={{ 
                   padding: '5px 12px', 
                   cursor: 'pointer',
-                  background: filterStatus === 'pendiente' ? '#FF9800' : '#e0e0e0',
-                  color: filterStatus === 'pendiente' ? 'white' : '#333',
+                  background: filterStatus === 'pendiente' ? '#FF9800' : (darkMode ? '#444' : '#e0e0e0'),
+                  color: filterStatus === 'pendiente' ? 'white' : (darkMode ? '#fff' : '#333'),
                   border: 'none',
                   borderRadius: '4px'
                 }}>
@@ -231,8 +284,8 @@ function App() {
                 style={{ 
                   padding: '5px 12px', 
                   cursor: 'pointer',
-                  background: filterStatus === 'jugando' ? '#2196F3' : '#e0e0e0',
-                  color: filterStatus === 'jugando' ? 'white' : '#333',
+                  background: filterStatus === 'jugando' ? '#2196F3' : (darkMode ? '#444' : '#e0e0e0'),
+                  color: filterStatus === 'jugando' ? 'white' : (darkMode ? '#fff' : '#333'),
                   border: 'none',
                   borderRadius: '4px'
                 }}>
@@ -243,8 +296,8 @@ function App() {
                 style={{ 
                   padding: '5px 12px', 
                   cursor: 'pointer',
-                  background: filterStatus === 'completado' ? '#4CAF50' : '#e0e0e0',
-                  color: filterStatus === 'completado' ? 'white' : '#333',
+                  background: filterStatus === 'completado' ? '#4CAF50' : (darkMode ? '#444' : '#e0e0e0'),
+                  color: filterStatus === 'completado' ? 'white' : (darkMode ? '#fff' : '#333'),
                   border: 'none',
                   borderRadius: '4px'
                 }}>
@@ -258,13 +311,8 @@ function App() {
               .filter(game => filterStatus === 'todos' ? true : game.status === filterStatus)
               .map(game => (
                 <div key={game.id} style={{ 
-                  border: `2px solid ${getStatusColor(game.status)}`, 
-                  padding: '15px', 
-                  borderRadius: '12px',
-                  width: '260px',
-                  backgroundColor: '#ffffff',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.2s'
+                  ...styles.card,
+                  border: `2px solid ${getStatusColor(game.status)}`
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
                 onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
