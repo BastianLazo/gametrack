@@ -6,6 +6,7 @@ import GameCard from './components/GameCard'
 import Statistics from './components/Statistics'
 import RandomPicker from './components/RandomPicker'
 import { useTheme } from './context/ThemeContext'
+import SkeletonLoader from './components/SkeletonLoader'
 
 function App() {
   const { darkMode, toggleDarkMode } = useTheme()
@@ -178,7 +179,7 @@ function App() {
             />
             <button onClick={handleSearch} style={styles.button}>Buscar</button>
           </div>
-          {loading && <p>Cargando...</p>}
+          {loading && <SkeletonLoader count={6} />}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', marginTop: '20px' }}>
             {results.map(game => (
               <GameCard

@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react'
 import { getGameDeals, formatPrice } from '../services/cheapsharkService'
 import { useTheme } from '../context/ThemeContext'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function GameCard({ game, onAddToWishlist, onAddToBacklog }) {
   const [addedWish, setAddedWish] = useState(false)
@@ -145,10 +147,16 @@ function GameCard({ game, onAddToWishlist, onAddToBacklog }) {
           overflowY: 'auto'
         }}>
           {loadingDeals && (
-            <div style={{ textAlign: 'center', padding: '10px', color: darkMode ? '#aaa' : '#999' }}>
-              <span>🔍 Buscando ofertas...</span>
+            <div style={{ padding: '10px' }}>
+                <Skeleton 
+                    height={60} 
+                    count={2} 
+                    baseColor={darkMode ? '#3a3a3a' : '#e0e0e0'}
+                    highlightColor={darkMode ? '#4a4a4a' : '#f5f5f5'}
+                    style={{ marginBottom: '8px' }}
+                 />
             </div>
-          )}
+        )}
           {!loadingDeals && deals.length === 0 && (
             <div style={{ textAlign: 'center', padding: '10px', color: darkMode ? '#aaa' : '#999' }}>
               <span>📭 No hay ofertas disponibles</span>
