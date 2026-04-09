@@ -8,7 +8,7 @@ const STORAGE_KEYS = {
 // Guardar wishlist
 export const saveWishlist = (games) => {
   localStorage.setItem(STORAGE_KEYS.WISHLIST, JSON.stringify(games))
-  return Promise.resolve()  // Preparado para futuro async
+  return Promise.resolve()
 }
 
 // Cargar wishlist
@@ -27,6 +27,15 @@ export const saveBacklog = (games) => {
 export const loadBacklog = () => {
   const data = localStorage.getItem(STORAGE_KEYS.BACKLOG)
   return Promise.resolve(data ? JSON.parse(data) : [])
+}
+
+// Actualizar estado de un juego en backlog
+export const updateGameStatus = async (gameId, newStatus, currentBacklog) => {
+  const updatedBacklog = currentBacklog.map(game => 
+    game.id === gameId ? { ...game, status: newStatus } : game
+  )
+  await saveBacklog(updatedBacklog)
+  return updatedBacklog
 }
 
 // Limpiar todos los datos
