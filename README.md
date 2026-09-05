@@ -155,11 +155,11 @@ Más adelante se podrían agregar más pruebas automáticas al workflow y tambi�
 
 **Bastian Lazo:**
 
-Este trabajo me permitió aplicar de manera práctica conceptos de Git que ya conocía, pero con un nivel de orden que no había utilizado antes. No estaba acostumbrado a trabajar con múltiples ramas y pull requests, y al principio me costó adaptarme a no hacer commits directamente en develop o main. Después de varios ciclos de desarrollo y revisiones junto a mi compañero, comprendí la utilidad de mantener una rama por cada funcionalidad, ya que esto evita conflictos y mantiene un historial más claro.
+Este trabajo me permitió aplicar conceptos que ya conocía de Git, pero con un nivel de orden mayor al que estaba utilizando anteriormente. Si bien estaba acostumbrado a utilizar diversas ramas, en este caso le di mayor importancia todavía a mantener ese orden e historial de trabajo en diversas ramas del repositorio.
 
-El mayor desafío fue la configuración de GitHub Actions, específicamente la correcta gestión de las credenciales de Firebase sin escribirlas directamente en el código. Pasamos bastante tiempo revisando errores en el despliegue hasta que identificamos que el secreto de GitHub no se estaba utilizando correctamente. Una vez resuelto, resultó muy satisfactorio comprobar que el frontend se desplegaba automáticamente al hacer merge a main.
+El mayor desafío fue la configuración de GitHub Actions, en concreto la gestión de credenciales en Firebase sin escribirlas directamente en el código, que era algo que pasaba por alto en mis proyectos anteriores.
 
-Esta experiencia me demostró que seguir un flujo de trabajo definido no solo aporta orden al equipo, sino que también genera mayor confianza al introducir cambios, al contar con una etapa de revisión previa a su integración en producción.
+Esta experiencia me demostró que seguir un flujo de trabajo definido aporta demasiado valor y orden al proyecto, además de poder trabajar con más confianza al momento de implementar cambios gracias a contar con una etapa de revisión previa a su integración en producción.
 
 ---
 
