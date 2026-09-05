@@ -155,11 +155,11 @@ Más adelante se podrían agregar más pruebas automáticas al workflow y tambi�
 
 **Bastian Lazo:**
 
-Personalmente, este trabajo me ayudó a dejar de ver DevOps como un concepto abstracto y empezar a entenderlo como algo práctico y aplicable. Al principio manejaba Git de forma básica, pero nunca había trabajado con un flujo tan estructurado como el que implementamos con GitFlow. Hacer los pull requests, revisar el código del otro y coordinar los merges me hizo dimensionar lo importante que es tener reglas claras cuando trabajas con alguien más en un proyecto.
+Este trabajo me permitió aplicar de manera práctica conceptos de Git que ya conocía, pero con un nivel de orden que no había utilizado antes. No estaba acostumbrado a trabajar con múltiples ramas y pull requests, y al principio me costó adaptarme a no hacer commits directamente en develop o main. Después de varios ciclos de desarrollo y revisiones junto a mi compañero, comprendí la utilidad de mantener una rama por cada funcionalidad, ya que esto evita conflictos y mantiene un historial más claro.
 
-También me costó un poco al principio entender cómo funcionaba GitHub Actions, sobre todo la parte de los secretos y cómo se conectaban con Firebase. Pero una vez que lo logramos, me di cuenta de lo potente que es poder automatizar el despliegue sin tener que estar haciendo pasos manuales cada vez que se sube un cambio.
+El mayor desafío fue la configuración de GitHub Actions, específicamente la correcta gestión de las credenciales de Firebase sin escribirlas directamente en el código. Pasamos bastante tiempo revisando errores en el despliegue hasta que identificamos que el secreto de GitHub no se estaba utilizando correctamente. Una vez resuelto, resultó muy satisfactorio comprobar que el frontend se desplegaba automáticamente al hacer merge a main.
 
-Creo que lo que más valoro de esta experiencia es haber visto el ciclo completo: desde planificar las ramas, pasar por la revisión, hasta que el código se despliega solo. Me queda claro que esto es justamente lo que se hace en equipos reales y me motiva a seguir profundizando en estas herramientas.
+Esta experiencia me demostró que seguir un flujo de trabajo definido no solo aporta orden al equipo, sino que también genera mayor confianza al introducir cambios, al contar con una etapa de revisión previa a su integración en producción.
 
 ---
 
