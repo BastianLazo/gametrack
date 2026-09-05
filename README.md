@@ -143,6 +143,26 @@ El manejo de secretos también fue un punto clave, porque trabajar con pagos y s
 
 En general, el ejercicio nos sirvió para ordenar nuestro proceso de desarrollo y hacerlo más seguro y trazable, que es justamente lo que busca un pipeline DevOps.
 
+## 11. Reflexiones personales
+
+**Benjamin Stavrakopulos:**
+
+Con este trabajo pude entender mejor varias cosas que antes conocía más que nada de teoría. Una de ellas fue el tema de las credenciales de Firebase, ya que al principio podría parecer normal dejarlas dentro del proyecto, pero al subirlo a GitHub eso puede terminar exponiendo información que no debería ser pública. Por eso fue importante usar los secretos de GitHub y así poder ocupar esas credenciales en el workflow sin dejarlas directamente en el repositorio.
+
+También me sirvió bastante poder hacer funcionar el workflow y ver que realmente se podía automatizar el despliegue. Antes veía DevOps más relacionado con Git, GitHub y el manejo de ramas, pero haciendo este trabajo me quedó más claro que también tiene que ver con automatizar procesos, revisar los cambios antes de subirlos y tratar de mantener el proyecto más ordenado y seguro.
+
+Más adelante se podrían agregar más pruebas automáticas al workflow y también incluir el backend, para que no solamente se revise y despliegue una parte del proyecto.
+
+**Bastian Lazo:**
+
+Personalmente, este trabajo me ayudó a dejar de ver DevOps como un concepto abstracto y empezar a entenderlo como algo práctico y aplicable. Al principio manejaba Git de forma básica, pero nunca había trabajado con un flujo tan estructurado como el que implementamos con GitFlow. Hacer los pull requests, revisar el código del otro y coordinar los merges me hizo dimensionar lo importante que es tener reglas claras cuando trabajas con alguien más en un proyecto.
+
+También me costó un poco al principio entender cómo funcionaba GitHub Actions, sobre todo la parte de los secretos y cómo se conectaban con Firebase. Pero una vez que lo logramos, me di cuenta de lo potente que es poder automatizar el despliegue sin tener que estar haciendo pasos manuales cada vez que se sube un cambio.
+
+Creo que lo que más valoro de esta experiencia es haber visto el ciclo completo: desde planificar las ramas, pasar por la revisión, hasta que el código se despliega solo. Me queda claro que esto es justamente lo que se hace en equipos reales y me motiva a seguir profundizando en estas herramientas.
+
+---
+
 **Integrantes:**
-- [Nombre Integrante 1]
-- [Nombre Integrante 2]
+- Benjamin Stavrakopulos
+- Bastian Lazo
